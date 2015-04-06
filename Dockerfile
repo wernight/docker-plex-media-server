@@ -1,8 +1,13 @@
 FROM ubuntu:15.04
 
+# Install required packages
 RUN apt-get update && apt-get install -y curl
-RUN curl -sL https://downloads.plex.tv/plex-media-server/0.9.11.16.958-80f1748/plexmediaserver_0.9.11.16.958-80f1748_amd64.deb -o plexmediaserver.deb
+
+# Download and install Plex (non plexpass)
+# This gets the latest non-plexpass version
+RUN curl -Ls `curl -Ls https://plex.tv/downloads | grep -o '[^"'"'"']*amd64.deb' | grep -v binaries` -o plexmediaserver.deb
 RUN dpkg -i plexmediaserver.deb
+RUN rm -f plexmediaserver.deb
 
 VOLUME /config
 VOLUME /media
