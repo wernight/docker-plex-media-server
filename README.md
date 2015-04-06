@@ -1,4 +1,4 @@
-Dockerized [https://plex.tv/](Plex Media Server).
+Dockerized [Plex Media Server](https://plex.tv/).
 
 Usage
 -----
@@ -11,8 +11,8 @@ You should provide a least two mount points accessibly by user #**104** (plex):
 Example:
 
     $ mkdir ~/plex-config
-    $ chown 104:104 -R plex-config
-    $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media -p 32400:32400 beroux/plex
+    $ chown 104:104 -R ~/plex-config
+    $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media -p 32400:32400 wernight/plex-media-server
 
 The `--restart=always` is optional, it'll for example allow auto-start on boot.
 
@@ -48,3 +48,5 @@ Troubleshooting
       * Try running once with `--net=host`. You may allow more IPs without being logged in by then going to Plex Settings > Server > Network > List of networks that are allowed without auth; or edit `your_config_location/Plex Media Server/Preferences.xml` and add `allowedNetworks="192.168.1.0/255.255.255.0"` attribute the `<Preferences …>` node or what ever your local range is.
   * Why do I have a random server name each time?
       * Either set a friendly name undex Plex Settings > Server > General; or start with `-h some-name`.
+
+Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).
