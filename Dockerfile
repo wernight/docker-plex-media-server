@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM debian:wheezy
 
 # Install required packages
 RUN apt-get update && apt-get install -y curl
