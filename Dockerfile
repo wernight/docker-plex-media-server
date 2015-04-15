@@ -1,7 +1,7 @@
 FROM debian:wheezy
 
 # Install required packages
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl
 
 # Create plex user
 RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex
