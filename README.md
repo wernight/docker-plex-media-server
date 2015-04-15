@@ -49,4 +49,24 @@ Troubleshooting
   * Why do I have a random server name each time?
       * Either set a friendly name undex Plex Settings > Server > General; or start with `-h some-name`.
 
+
+Backup
+------
+
+Honestly I wish there was a more official documentation for this. What you really need to back-up (adapt `~/plex-config` to
+your `/config` mounting point):
+
+  * Your media obviously
+  * `~/plex-config/Plex Media Server/Media/`
+  * `~/plex-config/Plex Media Server/Metadata/`
+  * `~/plex-config/Plex Media Server/Plug-in Support/Databases/`
+
+In practice, you may want to be safer and back-up everything except may be `~/plex-config/Plex Media Server/Cache/`
+which is pretty large and you can really just skip it. It'll be rebuild with the thumbnails, etc. as you had them.
+But don't take my word for it, it's really easy for you to check.
+
+
+Feedbacks
+---------
+
 Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).

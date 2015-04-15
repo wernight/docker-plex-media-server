@@ -46,4 +46,5 @@ ENV LD_LIBRARY_PATH /usr/lib/plexmediaserver
 ENV TMPDIR /tmp
 
 WORKDIR /usr/lib/plexmediaserver
-CMD ulimit -s $PLEX_MAX_STACK_SIZE && ./Plex\ Media\ Server
+CMD test -f /config/Plex\ Media\ Server/plexmediaserver.pid && rm -f /config/Plex\ Media\ Server/plexmediaserver.pid; \
+    ulimit -s $PLEX_MAX_STACK_SIZE && ./Plex\ Media\ Server
