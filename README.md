@@ -3,7 +3,7 @@ Dockerized [Plex Media Server](https://plex.tv/).
 Usage
 -----
 
-You should provide a least two mount points accessibly by user #**104** (plex):
+You should provide a least two mount points accessibly by user #**797** (`plex` inside the container):
 
   * `/config`: To somewhere to hold your Plex configuration (can be a data-only container). This will include all media listing, posters, collections and playlists you've setup...
   * Mount one or more of your media files (videos, audio, images...) as `/media` or some other mount location.
@@ -11,7 +11,7 @@ You should provide a least two mount points accessibly by user #**104** (plex):
 Example:
 
     $ mkdir ~/plex-config
-    $ chown 104:104 -R ~/plex-config
+    $ chown 797:797 -R ~/plex-config
     $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media -p 32400:32400 wernight/plex-media-server
 
 The `--restart=always` is optional, it'll for example allow auto-start on boot.
@@ -43,7 +43,7 @@ Troubleshooting
 ---------------
 
   * I have to accept EULA each time?!
-      * Did you forget to mount `/config` directory?
+      * Did you forget to mount `/config` directory? Check also that it's writable by user `797`.
   * Cannot see [**Server** tab](http://localhost:32400/web/index.html#!/settings/server) from settings!
       * Try running once with `--net=host`. You may allow more IPs without being logged in by then going to Plex Settings > Server > Network > List of networks that are allowed without auth; or edit `your_config_location/Plex Media Server/Preferences.xml` and add `allowedNetworks="192.168.1.0/255.255.255.0"` attribute the `<Preferences …>` node or what ever your local range is.
   * Why do I have a random server name each time?
