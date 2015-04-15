@@ -24,9 +24,9 @@ Once done, wait about a minute and open `http://localhost:32400/web` in your bro
 Features
 --------
 
-  * Built using official Docker [Ubuntu](https://registry.hub.docker.com/_/ubuntu/) and official [Plex download](https://plex.tv/downloads).
+  * Built using official Docker [Debian](https://registry.hub.docker.com/_/debian/) and official [Plex download](https://plex.tv/downloads) (takes 85 MB instead of 180 MB for Ubuntu).
   * Runs Plex as `plex` user (not root as [Docker's Containers don't contain](http://www.projectatomic.io/blog/2014/09/yet-another-reason-containers-don-t-contain-kernel-keyrings/)).
-  * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) by running directly plex (if plex or one of its subprocesses dies).
+  * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
   * Supports Plex upgrade system.
 
 
@@ -42,9 +42,9 @@ You can change some settings by setting environement variables:
 Troubleshooting
 ---------------
 
-  * I have to accept EULA each time.
+  * I have to accept EULA each time?!
       * Did you forget to mount `/config` directory?
-  * Cannot see [**Server** tab](http://localhost:32400/web/index.html#!/settings/server) from settings.
+  * Cannot see [**Server** tab](http://localhost:32400/web/index.html#!/settings/server) from settings!
       * Try running once with `--net=host`. You may allow more IPs without being logged in by then going to Plex Settings > Server > Network > List of networks that are allowed without auth; or edit `your_config_location/Plex Media Server/Preferences.xml` and add `allowedNetworks="192.168.1.0/255.255.255.0"` attribute the `<Preferences …>` node or what ever your local range is.
   * Why do I have a random server name each time?
       * Either set a friendly name undex Plex Settings > Server > General; or start with `-h some-name`.
