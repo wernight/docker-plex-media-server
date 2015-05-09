@@ -13,7 +13,9 @@ RUN chmod +x /bin/start
 
 # Download and install Plex (non plexpass)
 # This gets the latest non-plexpass version
-RUN curl -Ls `curl -Ls https://plex.tv/downloads | grep -o '[^"'"'"']*amd64.deb' | grep -v binaries` -o plexmediaserver.deb
+RUN DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads | grep -o '[^"'"'"']*amd64.deb' | grep -v binaries` && \
+    echo $DOWNLOAD_URL && \
+    curl -L $DOWNLOAD_URL -o plexmediaserver.deb
 RUN dpkg -i plexmediaserver.deb
 RUN rm -f plexmediaserver.deb
 
