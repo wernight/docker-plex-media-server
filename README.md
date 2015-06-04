@@ -27,7 +27,14 @@ Features
   * Built using official Docker [Debian](https://registry.hub.docker.com/_/debian/) and official [Plex download](https://plex.tv/downloads) (takes 85 MB instead of 180 MB for Ubuntu).
   * Runs Plex as `plex` user (not root as [Docker's Containers don't contain](http://www.projectatomic.io/blog/2014/09/yet-another-reason-containers-don-t-contain-kernel-keyrings/)).
   * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
-  * Supports Plex upgrade system.
+
+
+Upgrades and Versions
+---------------------
+
+To upgrade to the latest version do again a `docker pull wernight/plex-media-server` and that should be it. Currently Plex auto-upgrade does not seem to be properly supported (probably because this image runs a single plex process and not initd).
+
+You may use a tagged version to use a fixed or older version.
 
 
 Environment Variables
