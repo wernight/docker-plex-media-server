@@ -1,7 +1,9 @@
-FROM debian:wheezy
+FROM debian:jessie
 
 # Install required packages
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create plex user
 RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex
