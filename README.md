@@ -3,7 +3,7 @@ Dockerized [Plex Media Server](https://plex.tv/).
 Usage
 -----
 
-You should provide a least two mount points accessibly by user #**797** (`plex` inside the container):
+You should provide a least two mount points accessibly by user `797` (that `plex` random UID inside the container for safety, alternatively use `--user` flag):
 
   * `/config`: To somewhere to hold your Plex configuration (can be a data-only container). This will include all media listing, posters, collections and playlists you've setup...
   * Mount one or more of your media files (videos, audio, images...) as `/media` or some other mount location.
@@ -24,9 +24,11 @@ Once done, wait about a minute and open `http://localhost:32400/web` in your bro
 Features
 --------
 
-  * Built using official Docker [Debian](https://registry.hub.docker.com/_/debian/) and official [Plex download](https://plex.tv/downloads) (takes 85 MB instead of 180 MB for Ubuntu).
-  * Runs Plex as `plex` user (not root as [Docker's Containers don't contain](http://www.projectatomic.io/blog/2014/09/yet-another-reason-containers-don-t-contain-kernel-keyrings/)).
-  * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
+  * **Small**: Built using official Docker [Debian](https://registry.hub.docker.com/_/debian/) and official [Plex download](https://plex.tv/downloads) (takes 85 MB instead of 180 MB for Ubuntu).
+  * **Simple**: One command and you should be ready to go. All documented here.
+  * **Secure**:
+      * Runs Plex as `plex` user (not root as [Docker's Containers don't contain](http://www.projectatomic.io/blog/2014/09/yet-another-reason-containers-don-t-contain-kernel-keyrings/)).
+      * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
 
 ### Comparison of main Plex Docker containers
 
