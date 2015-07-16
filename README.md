@@ -35,7 +35,7 @@ Features
 Image                        | Base       | [Runs As]   | [PID 1 Reap] | [Slim Container] | Upgrade from UI 
 ---------------------------- | ---------- | ----------- | ------------ | ---------------- | --------------
 [wernight/plex-media-server] | **Debian** | **user**    | **Safe**     | **Yes**          | No
-[linuxserver/plex]           | Ubuntu     | **user?**   | **Safe**     | No               | Yes?
+[linuxserver/plex]           | Ubuntu     | **user?**   | **Safe**     | No               | **Yes**
 [timhaak/plex]               | Ubuntu     | root        | Unsafe       | No               | **Yes**
 [needo/plex]                 | Ubuntu     | root        | **Safe**     | No               | Yes?
 [binhex/arch-plex]           | Arch       | root        | Unsafe       | No               | ?
