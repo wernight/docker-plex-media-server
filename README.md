@@ -30,18 +30,19 @@ Features
 
 ### Comparison of main Plex Docker containers
 
-Image                        | Base       | [Runs As]   | [PID 1 reap] | Upgrade from UI | Single process
----------------------------- | ---------- | ----------- | ------------ | --------------- | --------------
-[wernight/plex-media-server] | **Debian** | **user**    | **Safe**     | No              | **Yes**
-[linuxserver/plex]           | Ubuntu     | **user?**   | **Safe**     | **Yes?**        | No
-[timhaak/plex]               | Ubuntu     | root        | Unsafe       | **Yes**         | No
-[needo/plex]                 | Ubuntu     | root        | **Safe**     | **Yes?**        | No
-[binhex/arch-plex]           | Arch       | root        | Unsafe       | ?               | No
+Image                        | Base       | [Runs As]   | [PID 1 Reap] | [Slim Container] | Upgrade from UI 
+---------------------------- | ---------- | ----------- | ------------ | ---------------- | --------------
+[wernight/plex-media-server] | **Debian** | **user**    | **Safe**     | **Yes**          | No
+[linuxserver/plex]           | Ubuntu     | **user?**   | **Safe**     | No               | Yes?
+[timhaak/plex]               | Ubuntu     | root        | Unsafe       | No               | **Yes**
+[needo/plex]                 | Ubuntu     | root        | **Safe**     | No               | Yes?
+[binhex/arch-plex]           | Arch       | root        | Unsafe       | No               | ?
 
 Based on current state as of July 2015.
 
-[PID 1 reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
-[Runs as]: https://opensource.com/business/14/7/docker-security-selinux
+[Runs As]: https://opensource.com/business/14/7/docker-security-selinux
+[PID 1 Reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
+[Slim Container]: https://blog.phusion.nl/2015/01/20/baseimage-docker-fat-containers-treating-containers-vms/
 [wernight/plex-media-server]: https://registry.hub.docker.com/u/wernight/plex-media-server/
 [linuxserver/plex]:           https://registry.hub.docker.com/u/linuxserver/plex/
 [timhaak/plex]:               https://registry.hub.docker.com/u/timhaak/plex/
