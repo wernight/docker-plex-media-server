@@ -33,11 +33,12 @@ Features
 Image                        | Base       | [Runs As]   | [PID 1 reap] | Upgrade from UI | Single process
 ---------------------------- | ---------- | ----------- | ------------ | --------------- | --------------
 [wernight/plex-media-server] | **Debian** | **user**    | **Safe**     | No              | **Yes**
-[linuxserver/plex]           | Ubuntu     | **user**    | **Safe**     | **Yes?**        | No
+[linuxserver/plex]           | Ubuntu     | **user?**   | **Safe**     | **Yes?**        | No
 [timhaak/plex]               | Ubuntu     | root        | Unsafe       | **Yes**         | No
 [needo/plex]                 | Ubuntu     | root        | **Safe**     | **Yes?**        | No
 [binhex/arch-plex]           | Arch       | root        | Unsafe       | ?               | No
 
+Based on current state as of July 2015.
 
 [PID 1 reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
 [Runs as]: https://opensource.com/business/14/7/docker-security-selinux
