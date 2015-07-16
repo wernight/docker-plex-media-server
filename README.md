@@ -30,7 +30,7 @@ Features
       * Runs Plex as `plex` user (not root as [Docker's Containers don't contain](http://www.projectatomic.io/blog/2014/09/yet-another-reason-containers-don-t-contain-kernel-keyrings/)).
       * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
 
-### Comparison of main Plex Docker containers
+### Comparison of main Plex Docker containers ([view on GitHub](https://github.com/wernight/docker-plex-media-server#user-content-comparison-of-main-plex-docker-containers))
 
 Image                        | Base       | [Runs As]   | [PID 1 Reap] | [Slim Container] | Upgrade from UI 
 ---------------------------- | ---------- | ----------- | ------------ | ---------------- | --------------
