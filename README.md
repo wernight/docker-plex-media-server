@@ -3,10 +3,10 @@ Dockerized [Plex Media Server](https://plex.tv/).
 Usage
 -----
 
-You should provide a least two mount points accessibly by user `797` (that `plex` random UID inside the container for safety, alternatively use `--user` flag):
+It is recommended to provide two mount points writable by user `797` (that `plex` random UID inside the container for safety, alternatively use `--user` flag):
 
   * `/config`: To somewhere to hold your Plex configuration (can be a data-only container). This will include all media listing, posters, collections and playlists you've setup...
-  * Mount one or more of your media files (videos, audio, images...) as `/media` or some other mount location.
+  * `/media`: To one or more of your media files (videos, audio, images...).
 
 Example:
 
