@@ -8,21 +8,18 @@ RUN apt-get update \
 # Create plex user
 RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex
 
-# Hack to avoid install to fail due to upstart not being installed.
-# We won't use upstart anyway.
-RUN touch /bin/start
-RUN chmod +x /bin/start
-
 # Download and install Plex (non plexpass)
 # This gets the latest non-plexpass version
+# Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
+# We won't use upstart anyway.
 RUN DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads | grep -o '[^"'"'"']*amd64.deb' | grep -v binaries` && \
     echo $DOWNLOAD_URL && \
-    curl -L $DOWNLOAD_URL -o plexmediaserver.deb
-RUN dpkg -i plexmediaserver.deb
-RUN rm -f plexmediaserver.deb
-
-# Hack clean-up
-RUN rm -f /bin/start
+    curl -L $DOWNLOAD_URL -o plexmediaserver.deb && \
+    touch /bin/start && \
+    chmod +x /bin/start && \
+    dpkg -i plexmediaserver.deb && \
+    rm -f plexmediaserver.deb && \
+    rm -f /bin/start
 
 # Create writable config directory in case the volume isn't mounted
 RUN mkdir /config
