@@ -12,7 +12,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex
 # This gets the latest non-plexpass version
 # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
 # We won't use upstart anyway.
-RUN DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads | grep -o '[^"'"'"']*amd64.deb' | grep -v binaries` && \
+RUN DOWNLOAD_URL='https://downloads.plex.tv/plex-media-server/0.9.12.13.1464-4ccd2ca/plexmediaserver_0.9.12.13.1464-4ccd2ca_amd64.deb' && \
     echo $DOWNLOAD_URL && \
     curl -L $DOWNLOAD_URL -o plexmediaserver.deb && \
     touch /bin/start && \
