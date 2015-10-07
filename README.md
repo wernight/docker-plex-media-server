@@ -1,5 +1,7 @@
 Dockerized [Plex Media Server](https://plex.tv/).
 
+[![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest 'Get your own badge on imagelayers.io')
+
 Usage
 -----
 
