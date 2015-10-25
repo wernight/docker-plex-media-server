@@ -32,15 +32,15 @@ Features
       * Runs Plex as `plex` user (not root as [Docker's Containers don't contain](http://www.projectatomic.io/blog/2014/09/yet-another-reason-containers-don-t-contain-kernel-keyrings/)).
       * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
 
-### Comparison of main Plex Docker containers ([view on GitHub](https://github.com/wernight/docker-plex-media-server#user-content-comparison-of-main-plex-docker-containers))
+### Comparison of main Plex Docker containers
 
-Image                        | Base       | [Runs As]   | [PID 1 Reap] | [Slim Container] | Upgrade from UI 
----------------------------- | ---------- | ----------- | ------------ | ---------------- | --------------
-[wernight/plex-media-server] | **Debian** | **user**    | **Safe**     | **Yes**          | No
-[linuxserver/plex]           | Ubuntu     | **user?**   | **Safe**     | No               | **Yes**
-[timhaak/plex]               | Ubuntu     | root        | Unsafe       | No               | **Yes**
-[needo/plex]                 | Ubuntu     | root        | **Safe**     | No               | Yes?
-[binhex/arch-plex]           | Arch       | root        | Unsafe       | No               | ?
+Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container] | Upgrade from UI 
+---------------------------- | -------------------- | ---------- | ------------ | ---------------- | --------------
+[wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**          | No
+[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | No?
+[timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No               | **Yes**
+[needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No               | Yes?
+[binhex/arch-plex]           | ![][img-binhex]      | root       | Unsafe       | No               | ?
 
 Based on current state as of July 2015.
 
@@ -101,3 +101,10 @@ Feedbacks
 ---------
 
 Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).
+
+[img-wernight]: https://badge.imagelayers.io/wernight/plex-media-server:latest.svg
+[img-linuxserver]: https://badge.imagelayers.io/linuxserver/plex:latest.svg
+[img-timhaak]: https://badge.imagelayers.io/timhaak/plex:latest.svg
+[img-needo]: https://badge.imagelayers.io/needo/plex:latest.svg
+[img-binhex]: https://badge.imagelayers.io/binhex/arch-plex:latest.svg
+
