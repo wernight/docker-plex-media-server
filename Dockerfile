@@ -1,29 +1,32 @@
 FROM debian:jessie
 
-# Install required packages
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Create plex user
-RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex
-
-# Download and install Plex (non plexpass)
+# 1. Create plex user
+# 2. Download and install Plex (non plexpass)
+# 3. Create writable config directory in case the volume isn't mounted
 # This gets the latest non-plexpass version
 # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
 # We won't use upstart anyway.
-RUN DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads | grep -o '[^"'"'"']*amd64.deb' | grep -v binaries` && \
-    echo $DOWNLOAD_URL && \
-    curl -L $DOWNLOAD_URL -o plexmediaserver.deb && \
-    touch /bin/start && \
-    chmod +x /bin/start && \
-    dpkg -i plexmediaserver.deb && \
-    rm -f plexmediaserver.deb && \
-    rm -f /bin/start
-
-# Create writable config directory in case the volume isn't mounted
-RUN mkdir /config
-RUN chown plex:plex /config
+RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        ca-certificates \
+        curl \
+ && DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads \
+    | grep -o '[^"'"'"']*amd64.deb' \
+    | grep -v binaries` \
+ && echo $DOWNLOAD_URL \
+ && curl -L $DOWNLOAD_URL -o plexmediaserver.deb \
+ && touch /bin/start \
+ && chmod +x /bin/start \
+ && dpkg -i plexmediaserver.deb \
+ && rm -f plexmediaserver.deb \
+ && rm -f /bin/start \
+ && apt-get purge -y --auto-remove \
+        curl \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
+ && mkdir /config \
+ && chown plex:plex /config
 
 VOLUME /config
 VOLUME /media
