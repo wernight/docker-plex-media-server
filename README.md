@@ -1,6 +1,6 @@
 Dockerized [Plex Media Server](https://plex.tv/).
 
-[![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/jkaberg/plex-media-server:latest.svg)](https://imagelayers.io/?images=jkaberg/plex-media-server:latest 'Get your own badge on imagelayers.io')
 
 Usage
 -----
@@ -36,7 +36,7 @@ Features
 
 Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container] | Upgrade from UI 
 ---------------------------- | -------------------- | ---------- | ------------ | ---------------- | --------------
-[wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**          | No
+[jkaberg/plex-media-server] | ![][img-jkaberg]    | **user**   | **Safe**     | **Yes**          | No
 [linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | No?
 [timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No               | **Yes**
 [needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No               | Yes?
@@ -47,7 +47,7 @@ Based on current state as of July 2015.
 [Runs As]: https://opensource.com/business/14/7/docker-security-selinux
 [PID 1 Reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
 [Slim Container]: https://blog.phusion.nl/2015/01/20/baseimage-docker-fat-containers-treating-containers-vms/
-[wernight/plex-media-server]: https://registry.hub.docker.com/u/wernight/plex-media-server/
+[jkaberg/plex-media-server]: https://registry.hub.docker.com/u/wernight/plex-media-server/
 [linuxserver/plex]:           https://registry.hub.docker.com/u/linuxserver/plex/
 [timhaak/plex]:               https://registry.hub.docker.com/u/timhaak/plex/
 [needo/plex]:                 https://registry.hub.docker.com/u/needo/plex/
@@ -102,7 +102,7 @@ Feedbacks
 
 Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).
 
-[img-wernight]: https://badge.imagelayers.io/wernight/plex-media-server:latest.svg
+[img-jkaberg]: https://badge.imagelayers.io/wernight/plex-media-server:latest.svg
 [img-linuxserver]: https://badge.imagelayers.io/linuxserver/plex:latest.svg
 [img-timhaak]: https://badge.imagelayers.io/timhaak/plex:latest.svg
 [img-needo]: https://badge.imagelayers.io/needo/plex:latest.svg
