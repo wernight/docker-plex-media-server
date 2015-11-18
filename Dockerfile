@@ -9,16 +9,19 @@ RUN apt-get update \
 RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex
 
 # Download and install Plex (non plexpass)
-# This gets the latest non-plexpass version
+# This gets the latest plexpass version
 # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
 # We won't use upstart anyway.
-RUN DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads | grep -o '[^"'"'"']*amd64.deb' | grep -v binaries` && \
-    echo $DOWNLOAD_URL && \
-    curl -L $DOWNLOAD_URL -o plexmediaserver.deb && \
+RUN apt-get -q update && \
+    VERSION=$(curl -s https://tools.linuxserver.io/latest-plex.json| grep "version" | cut -d '"' -f 4) && \
+    apt-get install -qy dbus gdebi-core avahi-daemon wget && \
+    wget -P /tmp "https://downloads.plex.tv/plex-media-server/$VERSION/plexmediaserver_${VERSION}_amd64.deb" && \
     touch /bin/start && \
     chmod +x /bin/start && \
-    dpkg -i plexmediaserver.deb && \
-    rm -f plexmediaserver.deb && \
+    gdebi -n /tmp/plexmediaserver_${VERSION}_amd64.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm -f /tmp/plexmediaserver_${VERSION}_amd64.deb && \
     rm -f /bin/start
 
 # Create writable config directory in case the volume isn't mounted
