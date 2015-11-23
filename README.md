@@ -14,13 +14,13 @@ Example:
 
     $ mkdir ~/plex-config
     $ chown 797:797 -R ~/plex-config
-    $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media -p 32400:32400 wernight/plex-media-server
+    $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 wernight/plex-media-server
+
+Once done, wait a few seconds and open `http://localhost:32400/web` in your browser.
+
+The flag `--net=host` is only required for the first run, so that your can login locally without password (without SSH proxy) and see the "Server" tab in the web UI (see troubleshooting section below). If you want **Avahi broadcast** to work then keep `--net=host` even after being logged in, but this will be somewhat less secure.
 
 The `--restart=always` is optional, it'll for example allow auto-start on boot.
-
-If you want Avahi broadcast to work, add `--net=host` but this will be more insecure. Without it you may also not see the `Server` tab unless the server is logged in, see troubleshooting section below.
-
-Once done, wait about a minute and open `http://localhost:32400/web` in your browser.
 
 
 Features
@@ -34,13 +34,14 @@ Features
 
 ### Comparison of main Plex Docker containers
 
-Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container] | Upgrade from UI 
----------------------------- | -------------------- | ---------- | ------------ | ---------------- | --------------
-[wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**          | No
-[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | No?
-[timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No               | **Yes**
-[needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No               | Yes?
-[binhex/arch-plex]           | ![][img-binhex]      | root       | Unsafe       | No               | ?
+Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container]
+---------------------------- | -------------------- | ---------- | ------------ | ----------------
+[wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**
+[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No
+[timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No
+[needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No
+[binhex/arch-plex]           | ![][img-binhex]      | root       | Unsafe       | No
+
 
 Based on current state as of July 2015.
 
@@ -55,6 +56,8 @@ Based on current state as of July 2015.
 
 Upgrades and Versions
 ---------------------
+
+*Plex Media Server* does *not* support auto-upgrade from the UI on Linux. If/once it does, we'd be more than happy to support it.
 
 To upgrade to the latest version do again a `docker pull wernight/plex-media-server` and that should be it. Currently Plex auto-upgrade does not seem to be properly supported (probably because this image runs a single plex process and not initd).
 
