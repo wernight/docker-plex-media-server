@@ -2,8 +2,7 @@ Dockerized [Plex Media Server](https://plex.tv/).
 
 [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest 'Get your own badge on imagelayers.io')
 
-Usage
------
+### Usage
 
 It is recommended to provide two mount points writable by user `797` (that `plex` random UID inside the container for safety, alternatively use `--user` flag):
 
@@ -23,8 +22,7 @@ The flag `--net=host` is only required for the first run, so that your can login
 The `--restart=always` is optional, it'll for example allow auto-start on boot.
 
 
-Features
---------
+### Features
 
   * **Small**: Built using official Docker [Debian](https://registry.hub.docker.com/_/debian/) and official [Plex download](https://plex.tv/downloads) (takes 85 MB instead of 180 MB for Ubuntu).
   * **Simple**: One command and you should be ready to go. All documented here.
@@ -33,7 +31,7 @@ Features
       * Downloads and installs the official binaries.
       * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
 
-### Comparison of main Plex Docker containers
+#### Comparison of main Plex Docker containers
 
 Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container] | [Plex Pass]
 ---------------------------- | -------------------- | ---------- | ------------ | ---------------- | -----------
@@ -56,8 +54,7 @@ Based on current state as of December 2015 (if you find any mistake please open 
 [needo/plex]:                 https://registry.hub.docker.com/u/needo/plex/
 [binhex/arch-plex]:           https://registry.hub.docker.com/u/binhex/arch-plex/
 
-Upgrades and Versions
----------------------
+### Upgrades and Versions
 
 *Plex Media Server* does *not* support auto-upgrade from the UI on Linux. If/once it does, we'd be more than happy to support it.
 
@@ -71,8 +68,7 @@ There are two ways of your choosing:
             $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e PLEXPASS_LOGIN='<my_plex_login>' -e PLEXPASS_PASSWORD='<my_plex_password>' wernight/plex-media-server:autoupdate
 
 
-Environment Variables
----------------------
+### Environment Variables
 
 You can change some settings by setting environement variables:
 
@@ -82,8 +78,7 @@ You can change some settings by setting environement variables:
   * `PLEXPASS_PASSWORD` your Plex Pass username or e-mail (used only on the `:autoupdate` tagged image).
 
 
-Troubleshooting
----------------
+### Troubleshooting
 
   * I have to accept EULA each time?!
       * Did you forget to mount `/config` directory? Check also that it's writable by user `797`.
@@ -93,8 +88,7 @@ Troubleshooting
       * Either set a friendly name undex Plex Settings > Server > General; or start with `-h some-name`.
 
 
-Backup
-------
+### Backup
 
 Honestly I wish there was a more official documentation for this. What you really need to back-up (adapt `~/plex-config` to
 your `/config` mounting point):
@@ -109,8 +103,7 @@ which is pretty large and you can really just skip it. It'll be rebuild with the
 But don't take my word for it, it's really easy for you to check.
 
 
-Feedbacks
----------
+### Feedbacks
 
 Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).
 
