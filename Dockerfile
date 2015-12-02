@@ -1,9 +1,7 @@
 FROM debian:jessie
 
 # 1. Create plex user
-# 2. Download and install Plex (non plexpass)
-# 3. Create writable config directory in case the volume isn't mounted
-# This gets the latest non-plexpass version
+# 2. Create writable config directory in case the volume isn't mounted
 # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
 # We won't use upstart anyway.
 RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
@@ -11,18 +9,10 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         ca-certificates \
         curl \
- && DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads \
-    | grep -o '[^"'"'"']*amd64.deb' \
-    | grep -v binaries` \
- && echo $DOWNLOAD_URL \
- && curl -L $DOWNLOAD_URL -o plexmediaserver.deb \
+        python \
+        python-mechanize \
  && touch /bin/start \
  && chmod +x /bin/start \
- && dpkg -i plexmediaserver.deb \
- && rm -f plexmediaserver.deb \
- && rm -f /bin/start \
- && apt-get purge -y --auto-remove \
-        curl \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /config \
@@ -47,10 +37,11 @@ ENV PLEX_MEDIA_SERVER_HOME /usr/lib/plexmediaserver
 ENV LD_LIBRARY_PATH /usr/lib/plexmediaserver
 ENV TMPDIR /tmp
 
-ADD *.sh /
+ENV PLEXPASS_LOGIN ''
+ENV PLEXPASS_PASSWORD ''
 
-USER plex
+ADD *.sh *.py /
 
 WORKDIR /usr/lib/plexmediaserver
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ./Plex\ Media\ Server
+CMD /install_plex.sh && runuser -u plex ./Plex\ Media\ Server
