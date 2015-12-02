@@ -1,6 +1,8 @@
 #!/usr/bin/env python
-import argparse
-import re
+'''
+Retrieves the latests Plex Media Server PlexPass downlaod URL for Debian 64-bit.
+'''
+import os
 import sys
 try:
     import mechanize
@@ -33,21 +35,10 @@ def retrieve_latest_download_url(login, password):
     return link.absolute_url
 
 
-def update_download_url_in_dockerfile(f, download_url):
-    # Search & replace
-    regex = re.compile(r"(?<=DOWNLOAD_URL=')[^']*(?=')")
-    lines = [regex.sub(download_url, line) for line in f.readlines()]
-
-    # Replace content
-    f.seek(0)
-    f.truncate()
-    f.writelines(lines)
-
-
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Retrieves the latests Plex Media Server PlexPass downlaod URL for Debian 64-bit.')
-    parser.add_argument('login')
-    parser.add_argument('password')
-    args = parser.parse_args()
-
-    print(retrieve_latest_download_url(args.login, args.password))
+    login = os.environ.get('PLEXPASS_LOGIN')
+    password = os.environ.get('PLEXPASS_PASSWORD')
+    if bool(login) != bool(password):
+        sys.stderr.write('To get the latest release for Plex Pass users, you must provide "PLEXPASS_LOGIN" and "PLEXPASS_PASSWORD" environment variables.\n')
+        sys.exit(1)
+    print(retrieve_latest_download_url(login, password))

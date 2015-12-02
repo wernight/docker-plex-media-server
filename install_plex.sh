@@ -1,8 +1,7 @@
 #!/bin/sh -ex
 
 # Download and install Plex Media Server
-DOWNLOAD_URL=$(/retrieve_plex_download_url.py "$PLEXPASS_LOGIN" "$PLEXPASS_PASSWORD")
-curl -L $DOWNLOAD_URL -o plexmediaserver.deb
+curl -L $(/retrieve_plex_download_url.py) -o plexmediaserver.deb
 dpkg -i plexmediaserver.deb
 
 # Clean-up (we also don't need the PlexPass login/password after this point
