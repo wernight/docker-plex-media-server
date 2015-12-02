@@ -1,6 +1,9 @@
-Dockerized [Plex Media Server](https://plex.tv/).
+Dockerized [Plex Media Server](https://plex.tv/)
+================================================
 
-[![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest 'Get your own badge on imagelayers.io')
+  * `latest` latest public (as described here) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest 'Get your own badge on imagelayers.io')
+  * `autoupdate` installs latest on start (see below for differences) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:autoupdate 'Get your own badge on imagelayers.io')
+  * `0.9.12.13` (or similar) are like `latest` but for a specific version
 
 ### Usage
 
