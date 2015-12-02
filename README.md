@@ -61,12 +61,12 @@ Based on current state as of December 2015 (if you find any mistake please open 
 
 *Plex Media Server* does *not* support auto-upgrade from the UI on Linux. If/once it does, we'd be more than happy to support it.
 
-There are two ways of your choosing:
+There are two ways to keep up to date:
 
-  * `wernight/plex-media-server:lastest` (default) – To upgrade to the latest version do again a `docker pull wernight/plex-media-server` and that should be it. You may use a tagged version to use a fixed or older version as well. It works as described here.
-  * `wernight/plex-media-server:autoupdate` – Auto update to the latest public or Plex Pass release each time the container is starting. It has a few differences compared to what is described here:
-      * Run as `root` initially so it can install Plex (required), after that it runs as `plex` user.
-      * Supports PlexPass: Premium users get to download a newer versions shortly before they get public, for that set two additional environment variable like (they'll only be used to retrieve the latest official download URL and cleared after that):
+  * Using `wernight/plex-media-server:latest` (default) – To upgrade to the latest public version do again a `docker pull wernight/plex-media-server` and restart your container; that should be it. You may use a *tagged version* to use a fixed or older version as well. It works as described here.
+  * Using `wernight/plex-media-server:autoupdate` (for users who want the really latest) – Installs the latest public or **Plex Pass** release each time the container starts. It has a few differences compared to what is described here:
+      * Runs as `root` initially so it can install Plex (required), after that it runs as `plex` user.
+      * Supports PlexPass: Premium users get to download newer versions shortly before they get public. For that set two additional environment variables (only be used to retrieve the latest official download URL and cleared after that) like:
 
             $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e PLEXPASS_LOGIN='<my_plex_login>' -e PLEXPASS_PASSWORD='<my_plex_password>' wernight/plex-media-server:autoupdate
 
@@ -96,7 +96,7 @@ You can change some settings by setting environement variables:
 Honestly I wish there was a more official documentation for this. What you really need to back-up (adapt `~/plex-config` to
 your `/config` mounting point):
 
-  * Your media obviously
+  * Your media, obviously!
   * `~/plex-config/Plex Media Server/Media/`
   * `~/plex-config/Plex Media Server/Metadata/`
   * `~/plex-config/Plex Media Server/Plug-in Support/Databases/`
