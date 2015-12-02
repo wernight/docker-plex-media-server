@@ -31,8 +31,6 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
 VOLUME /config
 VOLUME /media
 
-USER plex
-
 EXPOSE 32400
 
 # the number of plugins that can run at the same time
@@ -49,6 +47,10 @@ ENV PLEX_MEDIA_SERVER_HOME /usr/lib/plexmediaserver
 ENV LD_LIBRARY_PATH /usr/lib/plexmediaserver
 ENV TMPDIR /tmp
 
+ADD *.sh /
+
+USER plex
+
 WORKDIR /usr/lib/plexmediaserver
-CMD test -f /config/Plex\ Media\ Server/plexmediaserver.pid && rm -f /config/Plex\ Media\ Server/plexmediaserver.pid; \
-    ulimit -s $PLEX_MAX_STACK_SIZE && ./Plex\ Media\ Server
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ./Plex\ Media\ Server

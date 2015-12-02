@@ -30,20 +30,21 @@ Features
   * **Simple**: One command and you should be ready to go. All documented here.
   * **Secure**:
       * Runs Plex as `plex` user (not root as [Docker's Containers don't contain](http://www.projectatomic.io/blog/2014/09/yet-another-reason-containers-don-t-contain-kernel-keyrings/)).
+      * Downloads and installs the official binaries.
       * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
 
 ### Comparison of main Plex Docker containers
 
-Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container]
----------------------------- | -------------------- | ---------- | ------------ | ----------------
-[wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**
-[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No
-[timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No
-[needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No
-[binhex/arch-plex]           | ![][img-binhex]      | root       | Unsafe       | No
+Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container] | [Plex Pass]
+---------------------------- | -------------------- | ---------- | ------------ | ---------------- | -----------
+[wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**          | **Supported**
+[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | No
+[timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No               | **Supported**
+[needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No               | No
+[binhex/arch-plex]           | ![][img-binhex]      | root       | Unsafe       | No               | No
 
 
-Based on current state as of July 2015.
+Based on current state as of December 2015 (if you find any mistake please open a ticket on GitHub).
 
 [Runs As]: https://opensource.com/business/14/7/docker-security-selinux
 [PID 1 Reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
@@ -59,9 +60,14 @@ Upgrades and Versions
 
 *Plex Media Server* does *not* support auto-upgrade from the UI on Linux. If/once it does, we'd be more than happy to support it.
 
-To upgrade to the latest version do again a `docker pull wernight/plex-media-server` and that should be it. Currently Plex auto-upgrade does not seem to be properly supported (probably because this image runs a single plex process and not initd).
+There are two ways of your choosing:
 
-You may use a tagged version to use a fixed or older version.
+  * `wernight/plex-media-server:lastest` (default) – To upgrade to the latest version do again a `docker pull wernight/plex-media-server` and that should be it. You may use a tagged version to use a fixed or older version as well. It works as described here.
+  * `wernight/plex-media-server:autoupdate` – Auto update to the latest public or Plex Pass release each time the container is starting. It has a few differences compared to what is described here:
+      * Run as `root` initially so it can install Plex (required), after that it runs as `plex` user.
+      * Supports PlexPass: Premium users get to download a newer versions shortly before they get public, for that set two additional environment variable like (they'll only be used to retrieve the latest official download URL and cleared after that):
+
+            $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e PLEXPASS_LOGIN='<my_plex_login>' -e PLEXPASS_PASSWORD='<my_plex_password>' wernight/plex-media-server:autoupdate
 
 
 Environment Variables
