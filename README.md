@@ -49,6 +49,7 @@ Based on current state as of December 2015 (if you find any mistake please open 
 [Runs As]: https://opensource.com/business/14/7/docker-security-selinux
 [PID 1 Reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
 [Slim Container]: https://blog.phusion.nl/2015/01/20/baseimage-docker-fat-containers-treating-containers-vms/
+[Plex Pass]: https://support.plex.tv/hc/en-us/articles/201844613-Early-Access-Preview-Releases
 [wernight/plex-media-server]: https://registry.hub.docker.com/u/wernight/plex-media-server/
 [linuxserver/plex]:           https://registry.hub.docker.com/u/linuxserver/plex/
 [timhaak/plex]:               https://registry.hub.docker.com/u/timhaak/plex/
