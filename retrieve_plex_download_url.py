@@ -15,6 +15,9 @@ __author__ = 'Werner Beroux <werner@beroux.com>'
 
 def retrieve_latest_download_url(login, password):
     browser = mechanize.Browser()
+    
+    # Ignore robots by default
+    browser.set_handle_robots(False)
 
     if login and password:
         sys.stderr.write('Retrieving the latest Plex release for PlexPass users...\n')
