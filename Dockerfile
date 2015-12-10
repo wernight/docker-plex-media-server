@@ -6,7 +6,7 @@ FROM debian:jessie
 # We won't use upstart anyway.
 RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
         python \
