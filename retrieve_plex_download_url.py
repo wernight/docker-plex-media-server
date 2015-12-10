@@ -4,6 +4,7 @@ Retrieves the latests Plex Media Server PlexPass downlaod URL for Debian 64-bit.
 '''
 import os
 import sys
+import ssl
 try:
     import mechanize
 except ImportError:
@@ -14,6 +15,9 @@ __author__ = 'Werner Beroux <werner@beroux.com>'
 
 
 def retrieve_latest_download_url(login, password):
+    # Ignore SSL certificate errors
+    ssl._create_default_https_context = ssl._create_unverified_context
+    
     browser = mechanize.Browser()
     
     # Ignore robots by default
