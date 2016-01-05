@@ -3,6 +3,7 @@
 Retrieves the latests Plex Media Server PlexPass downlaod URL for Debian 64-bit.
 '''
 import os
+import re
 import sys
 import ssl
 try:
@@ -36,7 +37,7 @@ def retrieve_latest_download_url(login, password):
         sys.stderr.write('Retrieving latest public Plex release...\n')
         browser.open('https://plex.tv/downloads')
 
-    links = [link for link in browser.links() if '.deb' in link.url and link.text == '64-bit']
+    links = [link for link in browser.links() if '.deb' in link.url and re.match(r'64[ -]?[Bb]its?', link.text)]
     assert len(links) == 1
     link = links[0]
     return link.absolute_url
