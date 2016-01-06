@@ -88,7 +88,8 @@ You can change some settings by setting environement variables:
       * Try running once with `--net=host`. You may allow more IPs without being logged in by then going to Plex Settings > Server > Network > List of networks that are allowed without auth; or edit `your_config_location/Plex Media Server/Preferences.xml` and add `allowedNetworks="192.168.1.0/255.255.255.0"` attribute the `<Preferences …>` node or what ever your local range is.
   * Why do I have a random server name each time?
       * Either set a friendly name undex Plex Settings > Server > General; or start with `-h some-name`.
-
+  * Which port do I need to open on my firewall/router?
+      * Even if you're using `--net=host` or `--port 0.0.0.0:32400:32400` flag, you'll still need to redirect port 32400 on your router to your machine running Plex, else you'll only be able to access it from within your LAN and you won't be able to Chromecast and other things. Remember to also check your firewall. Note that you can use another port if you so desire.
 
 ### Backup
 
