@@ -1,6 +1,6 @@
   * `latest` latest public (as described here) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest 'Get your own badge on imagelayers.io')
-  * `autoupdate` installs latest on start (see below for differences) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:autoupdate 'Get your own badge on imagelayers.io')
-  * `0`, `0.9`, `0.9.14`, `0.9.14.6` (or similar) are like `latest` but for a specific version
+  * `autoupdate` installs latest on start (see below for differences) [![](https://badge.imagelayers.io/wernight/plex-media-server:autoupdate.svg)](https://imagelayers.io/?images=wernight/plex-media-server:autoupdate 'Get your own badge on imagelayers.io')
+  * `0`, `0.9`, `0.9.14`, `0.9.14.6` (or similar) are like `latest` but for a specific version [![](https://badge.imagelayers.io/wernight/plex-media-server:0.svg)](https://imagelayers.io/?images=wernight/plex-media-server:0 'Get your own badge on imagelayers.io')
 
 Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
 
