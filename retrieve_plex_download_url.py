@@ -2,6 +2,7 @@
 '''
 Retrieves the latests Plex Media Server PlexPass downlaod URL for Debian 64-bit.
 '''
+import json
 import os
 import re
 import sys
@@ -15,17 +16,30 @@ except ImportError:
 __author__ = 'Werner Beroux <werner@beroux.com>'
 
 
+class PutRequest(mechanize.Request):
+    def get_method(self):
+        return 'PUT'
+
+
 def retrieve_latest_download_url(login, password):
-    # Ignore SSL certificate errors
-    ssl._create_default_https_context = ssl._create_unverified_context
+    # Ignore SSL certificate errors (for some versions of SSL only).
+    if hasattr(ssl, '_create_default_https_context'):
+        ssl._create_default_https_context = ssl._create_unverified_context
     
     browser = mechanize.Browser()
     
     # Ignore robots by default
     browser.set_handle_robots(False)
 
+    # Change language to English.
+    browser.open(
+        PutRequest('https://plex.tv/language',
+        data=json.dumps({'locale': 'en'}),
+        headers={'Content-Type': 'application/json'}))
+
     if login and password:
-        sys.stderr.write('Retrieving the latest Plex release for PlexPass users...\n')
+        sys.stderr.write('Retrieving the latest Plex release for PlexPass Premium users...\n')
+
         browser.open('https://plex.tv/users/sign_in')
         browser.select_form(nr=0)
         browser['user[login]'] = login
