@@ -11,7 +11,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         ca-certificates \
         curl \
- && curl -L 'https://downloads.plex.tv/plex-media-server/0.9.12.19.1537-f38ac80/plexmediaserver_0.9.12.19.1537-f38ac80_amd64.deb' -o plexmediaserver.deb \
+ && curl -L 'https://downloads.plex.tv/plex-media-server/0.9.14.6.1620-e0b7243/plexmediaserver_0.9.14.6.1620-e0b7243_amd64.deb' -o plexmediaserver.deb \
  && touch /bin/start \
  && chmod +x /bin/start \
  && dpkg -i plexmediaserver.deb \
