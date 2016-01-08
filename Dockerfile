@@ -40,7 +40,7 @@ ENV TMPDIR /tmp
 ENV PLEXPASS_LOGIN ''
 ENV PLEXPASS_PASSWORD ''
 
-ADD *.sh *.py /
+COPY *.sh *.py /
 
 WORKDIR /usr/lib/plexmediaserver
 ENTRYPOINT ["/entrypoint.sh"]

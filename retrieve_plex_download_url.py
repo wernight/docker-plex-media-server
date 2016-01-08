@@ -7,6 +7,8 @@ import os
 import re
 import sys
 import ssl
+import time
+import traceback
 try:
     import mechanize
 except ImportError:
@@ -63,4 +65,23 @@ if __name__ == '__main__':
     if bool(login) != bool(password):
         sys.stderr.write('To get the latest release for Plex Pass users, you must provide "PLEXPASS_LOGIN" and "PLEXPASS_PASSWORD" environment variables.\n')
         sys.exit(1)
-    print(retrieve_latest_download_url(login, password))
+
+    try:
+        print(retrieve_latest_download_url(login, password))
+    except Exception as ex:
+        traceback.print_exc()
+        print('')
+        sys.stdout.flush()
+        sys.stderr.write('\033[31m{}\033[0m\n'.format(ex))
+        print('\033[1mTry retrieving the latest wernight/plex-media-server:')
+        print('')
+        print('  $ docker pull wernight/plex-media-server:autoupdate\033[0m')
+        print('')
+        sys.stdout.flush()
+        if os.isatty(sys.stdin.fileno()):
+            print('** Press ENTER to continue, or Ctrl+C to stop here **')
+            sys.stdin.readline()
+        else:
+            print('** Waiting for 30 seconds... **')
+            time.sleep(30)
+        sys.exit(2)
