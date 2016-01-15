@@ -78,7 +78,7 @@ You can change some settings by setting environement variables:
   * `PLEX_MEDIA_SERVER_MAX_STACK_SIZE` ulimit stack size (default: 3000).
   * `PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS` the number of plugins that can run at the same time (default: 6).
   * `PLEXPASS_LOGIN` your Plex Pass username or e-mail (used only on the `:autoupdate` tagged image).
-  * `PLEXPASS_PASSWORD` your Plex Pass username or e-mail (used only on the `:autoupdate` tagged image).
+  * `PLEXPASS_PASSWORD` your Plex Pass password (used only on the `:autoupdate` tagged image).
 
 
 ### Troubleshooting
