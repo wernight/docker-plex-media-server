@@ -13,6 +13,8 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
         python-mechanize \
  && touch /bin/start \
  && chmod +x /bin/start \
+ && touch /bin/stop \
+ && chmod +x /bin/stop \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /config \
