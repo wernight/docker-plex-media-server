@@ -39,13 +39,14 @@ The `--restart=always` is optional, it'll for example allow auto-start on boot.
 Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container] | [Plex Pass]
 ---------------------------- | -------------------- | ---------- | ------------ | ---------------- | -----------
 [wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**          | **Supported**
-[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | No
-[timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No               | **Supported**
-[needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No               | No
+[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | Supported<sup>[1](#footnote1)</sup>
+[timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No               | Supported<sup>[1](#footnote1)</sup>
+[needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No               | Supported<sup>[1](#footnote1)</sup>
 [binhex/arch-plex]           | ![][img-binhex]      | root       | Unsafe       | No               | No
 
+<a name="footnote1">1</a>: Supported by downloading via third party and not from the official Plex website.
 
-Based on current state as of December 2015 (if you find any mistake please open a ticket on GitHub).
+Based on current state as of January 2016 (if you find any mistake please open a ticket on GitHub).
 
 [Runs As]: https://opensource.com/business/14/7/docker-security-selinux
 [PID 1 Reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
