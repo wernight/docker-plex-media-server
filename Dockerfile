@@ -11,6 +11,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        xmlstarlet \
  && DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads \
     | grep -o '[^"'"'"']*amd64.deb' \
     | grep -v binaries` \
