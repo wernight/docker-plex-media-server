@@ -11,6 +11,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        xmlstarlet \
  && DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads \
     | grep -o '[^"'"'"']*amd64.deb' \
     | grep -v binaries` \
@@ -21,8 +22,6 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && dpkg -i plexmediaserver.deb \
  && rm -f plexmediaserver.deb \
  && rm -f /bin/start \
- && apt-get purge -y --auto-remove \
-        curl \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /config \
@@ -48,6 +47,8 @@ ENV LD_LIBRARY_PATH /usr/lib/plexmediaserver
 ENV TMPDIR /tmp
 
 ADD *.sh /
+
+ADD Preferences.xml /Preferences.xml
 
 USER plex
 
