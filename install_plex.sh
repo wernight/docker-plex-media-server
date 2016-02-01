@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -x
 
 # Download and install Plex Media Server
 DOWNLOAD_URL=$(/retrieve_plex_download_url.py)
