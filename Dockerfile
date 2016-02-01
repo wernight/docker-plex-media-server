@@ -12,11 +12,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
         ca-certificates \
         curl \
         xmlstarlet \
- && DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads \
-    | grep -o '[^"'"'"']*amd64.deb' \
-    | grep -v binaries` \
- && echo $DOWNLOAD_URL \
- && curl -L $DOWNLOAD_URL -o plexmediaserver.deb \
+ && curl -L 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' -o plexmediaserver.deb \
  && touch /bin/start \
  && chmod +x /bin/start \
  && dpkg -i plexmediaserver.deb \
