@@ -82,9 +82,14 @@ You can change some settings by setting environement variables:
 
   * `PLEX_MEDIA_SERVER_MAX_STACK_SIZE` ulimit stack size (default: 3000).
   * `PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS` the number of plugins that can run at the same time (default: 6).
-  * `X_PLEX_TOKEN` your X-Plex-Token (using only on the `:autoupdate` tagged image to retrieve latest PlexPass version witout login/password, see [Finding your account token / X-Plex-Token](https://support.plex.tv/hc/en-us/articles/204059436)).
-  * `PLEXPASS_LOGIN` your Plex Pass username or e-mail (used only on the `:autoupdate` tagged image as alternative to `X_PLEX_TOKEN`).
-  * `PLEXPASS_PASSWORD` your Plex Pass password (used only on the `:autoupdate` tagged image as alternative to `X_PLEX_TOKEN`).
+
+Additional setting environement variables for the `:autoupdate` tagged image:
+
+  * `X_PLEX_TOKEN` your X-Plex-Token to retrieve latest PlexPass version witout login/password, see [Finding your account token / X-Plex-Token](https://support.plex.tv/hc/en-us/articles/204059436).
+  * `PLEXPASS_LOGIN` your Plex Pass username or e-mail (as alternative to `X_PLEX_TOKEN`).
+  * `PLEXPASS_PASSWORD` your Plex Pass password (as alternative to `X_PLEX_TOKEN`).
+  * `PLEX_SKIP_UPDATE` can be set to `true` to skip completely the install of latest Plex.
+  * `PLEX_FORCE_DOWNLOAD_URL` can be set to a URL to force downloading and installing a given Plex Linux package for Debian 64-bit. 
 
 
 ### Troubleshooting
