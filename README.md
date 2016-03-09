@@ -1,6 +1,8 @@
-  * `latest` latest public (as described here) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest 'Get your own badge on imagelayers.io')
-  * `autoupdate` installs latest on start (see below for differences) [![](https://badge.imagelayers.io/wernight/plex-media-server:autoupdate.svg)](https://imagelayers.io/?images=wernight/plex-media-server:autoupdate 'Get your own badge on imagelayers.io')
-  * `0`, `0.9`, `0.9.14`, `0.9.14.6` (or similar) are like `latest` but for a specific version [![](https://badge.imagelayers.io/wernight/plex-media-server:0.svg)](https://imagelayers.io/?images=wernight/plex-media-server:0 'Get your own badge on imagelayers.io')
+  * `latest` latest public (as described here)
+  * `autoupdate` installs latest on start (see below for differences)
+  * `0`, `0.9`, `0.9.14`, `0.9.14.6` (or similar) are like `latest` but for a specific version
+
+[![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest,wernight/plex-media-server:autoupdate,wernight/plex-media-server:0 'Get your own badge on imagelayers.io')
 
 Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
 
@@ -24,6 +26,31 @@ The flag `--net=host` is only required for the first run, so that your can login
 
 The `--restart=always` is optional, it'll for example allow auto-start on boot.
 
+Depending on what you're streaming to, you may want to open more ports.
+Example of [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/) with a
+[complete list of ports used by Plex](https://support.plex.tv/hc/en-us/articles/201543147-What-network-ports-do-I-need-to-allow-through-my-firewall-):
+
+    version: '2'
+    plex:
+      image: wernight/plex-media-server:autoupdate
+      ports:
+        - "32400:32400"
+        - "1900:1900/udp"
+        - "3005:3005"
+        - "5353:5353/udp"
+        - "8324:8324"
+        - "32410:32410/udp"
+        - "32412:32412/udp"
+        - "32413:32413/udp"
+        - "32414:32414/udp"
+        - "32469:32469"
+      volumes:
+        - ./config:/config
+        - ./media:/media
+      #environment:
+      #  - X_PLEX_TOKEN=PUT_MY_PLEX_TOKEN_HERE
+      #network_mode: host
+      #restart: always
 
 ### Features
 
