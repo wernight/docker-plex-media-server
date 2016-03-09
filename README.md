@@ -22,7 +22,7 @@ Example:
 
 Once done, wait a few seconds and open `http://localhost:32400/web` in your browser.
 
-The flag `--net=host` is only required for the first run, so that your can login locally without password (without SSH proxy) and see the "Server" tab in the web UI (see troubleshooting section below). If you want **Avahi broadcast** to work then keep `--net=host` even after being logged in, but this will be somewhat less secure.
+The flag `--net=host` is only required for the first run, so that your can login locally without password (without SSH proxy) and see the "Server" tab in the web UI (see troubleshooting section below). Alternatively you can provide `X_PLEX_TOKEN` or `PLEX_LOGIN` and `PLEX_PASSWORD` (see below). If you want **Avahi broadcast** to work then keep `--net=host` even after being logged in, but this will be somewhat less secure.
 
 The `--restart=always` is optional, it'll for example allow auto-start on boot.
 
@@ -48,7 +48,7 @@ Example of [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/)
         - ./config:/config
         - ./media:/media
       #environment:
-      #  - X_PLEX_TOKEN=PUT_MY_PLEX_TOKEN_HERE
+      #  - X_PLEX_TOKEN=MY_X_PLEX_TOKEN
       #network_mode: host
       #restart: always
 
@@ -100,23 +100,25 @@ There are two ways to keep up to date:
 
         Alternatively you can specify your Plex login/password (only be used to retrieve the latest official download URL and cleared after that) like:
 
-            $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e PLEXPASS_LOGIN='<my_plex_login>' -e PLEXPASS_PASSWORD='<my_plex_password>' wernight/plex-media-server:autoupdate
+            $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e PLEX_LOGIN='<my_plex_login>' -e PLEX_PASSWORD='<my_plex_password>' wernight/plex-media-server:autoupdate
 
 
 ### Environment Variables
 
 You can change some settings by setting environement variables:
 
+  * `X_PLEX_TOKEN` is your X-Plex-Token (a safer alternative to `PLEX_LOGIN` and `PLEX_PASSWORD`) used to *register your server* without having to access your Plex Server settings via the web UI, see [Finding your account token / X-Plex-Token](https://support.plex.tv/hc/en-us/articles/204059436).
+  * `PLEX_LOGIN` your Plex username or e-mail (as alternative to `X_PLEX_TOKEN`).
+  * `PLEX_PASSWORD` your Plex password (as alternative to `X_PLEX_TOKEN`).
+  * `PLEX_EXTERNAL_PORT` is the external port number (accessible from the internet) to reach your Plex server (default is 32400).
   * `PLEX_MEDIA_SERVER_MAX_STACK_SIZE` ulimit stack size (default: 3000).
   * `PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS` the number of plugins that can run at the same time (default: 6).
 
 Additional setting environement variables for the `:autoupdate` tagged image:
 
-  * `X_PLEX_TOKEN` your X-Plex-Token to retrieve latest PlexPass version witout login/password, see [Finding your account token / X-Plex-Token](https://support.plex.tv/hc/en-us/articles/204059436).
-  * `PLEXPASS_LOGIN` your Plex Pass username or e-mail (as alternative to `X_PLEX_TOKEN`).
-  * `PLEXPASS_PASSWORD` your Plex Pass password (as alternative to `X_PLEX_TOKEN`).
+  * `X_PLEX_TOKEN` or `PLEX_LOGIN` and `PLEX_PASSWORD` are also used to *retrieve latest PlexPass* version (if you have access).
   * `PLEX_SKIP_UPDATE` can be set to `true` to skip completely the install of latest Plex.
-  * `PLEX_FORCE_DOWNLOAD_URL` can be set to a URL to force downloading and installing a given Plex Linux package for Debian 64-bit. 
+  * `PLEX_FORCE_DOWNLOAD_URL` can be set to a URL to force downloading and installing a given Plex Linux package for Debian 64-bit.
 
 
 ### Troubleshooting

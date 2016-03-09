@@ -14,5 +14,3 @@ fi
 # Clean-up (we also don't need the PlexPass login/password after this point
 # so it's safer if we also unset them).
 unset X_PLEX_TOKEN
-unset PLEXPASS_LOGIN
-unset PLEXPASS_PASSWORD

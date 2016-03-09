@@ -27,9 +27,9 @@ def retrieve_latest_download_url(login, password):
     # Ignore SSL certificate errors (for some versions of SSL only).
     if hasattr(ssl, '_create_default_https_context'):
         ssl._create_default_https_context = ssl._create_unverified_context
-    
+
     browser = mechanize.Browser()
-    
+
     # Ignore robots by default
     browser.set_handle_robots(False)
 
@@ -72,13 +72,13 @@ if __name__ == '__main__':
         print(download_url)
     else:
         x_plex_token = os.environ.get('X_PLEX_TOKEN')
-        login = os.environ.get('PLEXPASS_LOGIN')
-        password = os.environ.get('PLEXPASS_PASSWORD')
+        login = os.environ.get('PLEX_LOGIN', os.environ.get('PLEXPASS_LOGIN'))
+        password = os.environ.get('PLEX_PASSWORD', os.environ.get('PLEXPASS_PASSWORD'))
         if x_plex_token and (login or password):
-            sys.stderr.write('If you provide a "X_PLEX_TOKEN" you do not need to provide a "PLEXPASS_LOGIN" or "PLEXPASS_PASSWORD".\n')
+            sys.stderr.write('If you provide a "X_PLEX_TOKEN" you do not need to provide a "PLEX_LOGIN" or "PLEX_PASSWORD".\n')
             sys.exit(1)
         if bool(login) != bool(password):
-            sys.stderr.write('To get the latest release for Plex Pass users, you must provide "X_PLEX_TOKEN" (see https://support.plex.tv/hc/en-us/articles/204059436), or provide "PLEXPASS_LOGIN" and "PLEXPASS_PASSWORD" environment variables.\n')
+            sys.stderr.write('To get the latest release for Plex Pass users, you must provide "X_PLEX_TOKEN" (see https://support.plex.tv/hc/en-us/articles/204059436), or provide "PLEX_LOGIN" and "PLEX_PASSWORD" environment variables.\n')
             sys.exit(1)
 
         if login and password:
