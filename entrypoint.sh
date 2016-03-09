@@ -32,8 +32,8 @@ fi
 
 # Get plex token if Plex username and password are defined.
 if [ -n "$PLEX_LOGIN" ] && [ -n "$PLEX_PASSWORD" ]; then
-    # Retrieve a token from Plex.tv
-    X_PLEX_TOKEN=$(curl -u "${PLEX_LOGIN}":"${PLEX_PASSWORD}" 'https://plex.tv/users/sign_in.xml' \
+    echo 'Retrieving a X-Plex-Token using Plex login/password...'
+    curl -u "${PLEX_LOGIN}":"${PLEX_PASSWORD}" 'https://plex.tv/users/sign_in.xml' \
         -X POST -H 'X-Plex-Device-Name: PlexMediaServer' \
         -H 'X-Plex-Provides: server' \
         -H 'X-Plex-Version: 0.9' \
@@ -41,8 +41,17 @@ if [ -n "$PLEX_LOGIN" ] && [ -n "$PLEX_PASSWORD" ]; then
         -H 'X-Plex-Platform: xcid' \
         -H 'X-Plex-Product: Plex Media Server'\
         -H 'X-Plex-Device: Linux'\
-        -H 'X-Plex-Client-Identifier: XXXX' --compressed | sed -n 's/.*<authentication-token>\(.*\)<\/authentication-token>.*/\1/p')
+        -H 'X-Plex-Client-Identifier: XXXX' --compressed >/tmp/plex_sign_in
+    export X_PLEX_TOKEN=$(sed -n 's/.*<authenticationToken>\(.*\)<\/authenticationToken>.*/\1/p' /tmp/plex_sign_in)
+    if [ -n "$X_PLEX_TOKEN" ]; then
+        cat /tmp/plex_sign_in
+        echo 'Failed to retrieve the X-Plex-Token.'
+        exit 1
+    fi
+    rm -f /tmp/plex_sign_in
 fi
+unset PLEX_LOGIN
+unset PLEX_PASSWORD
 
 # Default Preferences.
 if [ ! -f /config/Plex\ Media\ Server/Preferences.xml ]; then
@@ -64,8 +73,6 @@ if [ -n "$PLEX_EXTERNAL_PORT" ]; then
 fi
 
 # Unset any environment variable we used (just for safety as we don't need them anymore).
-unset PLEX_LOGIN
-unset PLEX_PASSWORD
 unset PLEX_EXTERNAL_PORT
 unset X_PLEX_TOKEN
 
