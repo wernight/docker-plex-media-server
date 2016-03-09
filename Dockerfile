@@ -10,8 +10,6 @@ RUN set -x \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
-        python \
-        python-mechanize \
         xmlstarlet \
  && touch /bin/start \
  && chmod +x /bin/start \
