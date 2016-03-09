@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh -e
 
 # Skip update completely?
 if [ -n "$PLEX_SKIP_UPDATE" ] && [ "$PLEX_SKIP_UPDATE" != no ] && [ "$PLEX_SKIP_UPDATE" != false ] && [ $PLEX_SKIP_UPDATE != 0 ]; then
@@ -7,7 +7,7 @@ else
 
     # Force downloading a specific URL?
     if [ -n "$PLEX_FORCE_DOWNLOAD_URL" ]; then
-        echo "Using PLEX_FORCE_DOWNLOAD_URL: $PLEX_FORCE_DOWNLOAD_URL"
+        echo "Using PLEX_FORCE_DOWNLOAD_URL."
     else
         PLEX_FORCE_DOWNLOAD_URL='https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu'
         if [ -n "$X_PLEX_TOKEN" ]; then
