@@ -1,6 +1,6 @@
   * `latest` latest public (as described here)
   * `autoupdate` installs latest on start (see below for differences)
-  * `0`, `0.9`, `0.9.14`, `0.9.14.6` (or similar) are like `latest` but for a specific version
+  * `0`, `0.9`, `0.9.15`, `0.9.15.6` (or similar) are like `latest` but for a specific version
 
 [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest,wernight/plex-media-server:autoupdate,wernight/plex-media-server:0 'Get your own badge on imagelayers.io')
 
