@@ -22,7 +22,11 @@ Example:
 
 Once done, wait a few seconds and open `http://localhost:32400/web` in your browser.
 
-The flag `--net=host` is only required for the first run, so that your can login locally without password (without SSH proxy) and see the "Server" tab in the web UI (see troubleshooting section below). Alternatively you can provide `X_PLEX_TOKEN` or `PLEX_LOGIN` and `PLEX_PASSWORD` (see below). If you want **Avahi broadcast** to work then keep `--net=host` even after being logged in, but this will be somewhat less secure.
+The flag `--net=host` is only required for the first run, so that your can login locally without password (without SSH proxy) and see the "Server" tab in the web UI (see troubleshooting section below). Alternatively you can provide `X_PLEX_TOKEN`, or `PLEX_LOGIN` and `PLEX_PASSWORD` (see below). If you want **Avahi broadcast** to work then keep `--net=host` even after being logged in, but this will be somewhat less secure.
+
+To [find your X-Plex-Token](https://support.plex.tv/hc/en-us/articles/204059436-Finding-your-account-token-X-Plex-Token) a helper script has been provided, just run:
+
+    $ docker run --rm -it wernight/plex-media-server retrieve-plex-token
 
 The `--restart=always` is optional, it'll for example allow auto-start on boot.
 
@@ -100,7 +104,7 @@ There are two ways to keep up to date:
   * Using `wernight/plex-media-server:latest` (default) – To upgrade to the latest public version do again a `docker pull wernight/plex-media-server` and restart your container; that should be it. You may use a *tagged version* to use a fixed or older version as well. It works as described here.
   * Using `wernight/plex-media-server:autoupdate` (for users who want the really latest) – Installs the latest public or **Plex Pass** release each time the container starts. It has a few differences compared to what is described here:
       * Runs as `root` initially so it can install Plex (required), after that it runs as `plex` user.
-      * Supports PlexPass: Premium users get to download newer versions shortly before they get public. For that it's recommended that you [find your X-Plex-Token](https://support.plex.tv/hc/en-us/articles/204059436-Finding-your-account-token-X-Plex-Token) then specify it:
+      * Supports PlexPass: Premium users get to download newer versions shortly before they get public. For that either specify `PLEX_LOGIN` and `PLEX_PASSWORD` or preferably `X_PLEX_TOKEN`:
 
             $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e X_PLEX_TOKEN='<my_x_plex_token>' wernight/plex-media-server:autoupdate
 
