@@ -33,7 +33,8 @@ ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
     PLEXPASS_LOGIN='' \
     PLEXPASS_PASSWORD=''
 
-COPY *.sh *.py Preferences.xml /
+COPY *.sh Preferences.xml /
+COPY retrieve-plex-token /usr/local/bin/
 
 VOLUME /config
 VOLUME /media

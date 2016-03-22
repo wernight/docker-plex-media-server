@@ -32,23 +32,7 @@ fi
 
 # Get plex token if Plex username and password are defined.
 if [ -n "$PLEX_LOGIN" ] && [ -n "$PLEX_PASSWORD" ]; then
-    echo 'Retrieving a X-Plex-Token using Plex login/password...'
-    curl -u "${PLEX_LOGIN}":"${PLEX_PASSWORD}" 'https://plex.tv/users/sign_in.xml' \
-        -X POST -H 'X-Plex-Device-Name: PlexMediaServer' \
-        -H 'X-Plex-Provides: server' \
-        -H 'X-Plex-Version: 0.9' \
-        -H 'X-Plex-Platform-Version: 0.9' \
-        -H 'X-Plex-Platform: xcid' \
-        -H 'X-Plex-Product: Plex Media Server'\
-        -H 'X-Plex-Device: Linux'\
-        -H 'X-Plex-Client-Identifier: XXXX' --compressed >/tmp/plex_sign_in
-    export X_PLEX_TOKEN=$(sed -n 's/.*<authenticationToken>\(.*\)<\/authenticationToken>.*/\1/p' /tmp/plex_sign_in)
-    if [ -n "$X_PLEX_TOKEN" ]; then
-        cat /tmp/plex_sign_in
-        echo 'Failed to retrieve the X-Plex-Token.'
-        exit 1
-    fi
-    rm -f /tmp/plex_sign_in
+    export X_PLEX_TOKEN=$(retrieve-plex-token "$PLEX_LOGIN" "$PLEX_PASSPWORD")
 fi
 unset PLEX_LOGIN
 unset PLEX_PASSWORD
