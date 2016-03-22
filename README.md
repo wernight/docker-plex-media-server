@@ -34,16 +34,22 @@ Example of [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/)
     plex:
       image: wernight/plex-media-server:autoupdate
       ports:
+        # for access to the Plex Media Server [required]
         - "32400:32400"
+        # for access to the Plex DLNA Server
         - "1900:1900/udp"
+        - "32469:32469"
+        # for controlling Plex Home Theater via Plex Companion
         - "3005:3005"
+        # for older Bonjour/Avahi network discovery
         - "5353:5353/udp"
+        # for controlling Plex for Roku via Plex Companion
         - "8324:8324"
+        # for current GDM network discovery
         - "32410:32410/udp"
         - "32412:32412/udp"
         - "32413:32413/udp"
         - "32414:32414/udp"
-        - "32469:32469"
       volumes:
         - ./config:/config
         - ./media:/media
