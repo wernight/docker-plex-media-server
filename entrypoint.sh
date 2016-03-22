@@ -37,23 +37,33 @@ fi
 unset PLEX_LOGIN
 unset PLEX_PASSWORD
 
+PLEX_PREFERENCES="/config/Plex Media Server/Preferences.xml"
+
 # Default Preferences.
 if [ ! -f /config/Plex\ Media\ Server/Preferences.xml ]; then
     mkdir -p /config/Plex\ Media\ Server
-    cp /Preferences.xml /config/Plex\ Media\ Server/Preferences.xml
+    cp /Preferences.xml "$PLEX_PREFERENCES"
 fi
+
+update_preferences_attribute() {
+    attr="$1"
+    value="$2"
+    if [ $(xmlstarlet select -T -t -m "/Preferences" -v "@$attr" -n "$PLEX_PREFERENCES") ]; then
+        xmlstarlet edit --inplace --update "/Preferences/@$attr" -v "$value" "$PLEX_PREFERENCES"
+    else
+        xmlstarlet edit --inplace --insert "Preferences" --type attr -n "$attr" -v "$value" "$PLEX_PREFERENCES"
+    fi
+}
 
 # Sets PlexOnlineToken in Preferences.xml if provided.
 if [ -n "$X_PLEX_TOKEN" ]; then
-    #if [ ! $(xmlstarlet sel -T -t -m "/Preferences" -v "@PlexOnlineToken" -n /config/Plex\ Media\ Server/Preferences.xml) ]; then
-        xmlstarlet ed --inplace --insert "Preferences" --type attr -n PlexOnlineToken -v ${X_PLEX_TOKEN} /config/Plex\ Media\ Server/Preferences.xml
-    #fi
+    update_preferences_attribute PlexOnlineToken "$X_PLEX_TOKEN"
 fi
 
 # Sets ManualPortMappingPort in Preferences.xml if provided.
 if [ -n "$PLEX_EXTERNAL_PORT" ]; then
-    xmlstarlet ed --inplace --insert "Preferences" --type attr -n ManualPortMappingMode -v 1 /config/Plex\ Media\ Server/Preferences.xml
-    xmlstarlet ed --inplace --insert "Preferences" --type attr -n ManualPortMappingPort -v ${PLEX_EXTERNAL_PORT} /config/Plex\ Media\ Server/Preferences.xml
+    update_preferences_attribute ManualPortMappingMode 1
+    update_preferences_attribute ManualPortMappingPort $PLEX_EXTERNAL_PORT
 fi
 
 # Unset any environment variable we used (just for safety as we don't need them anymore).
