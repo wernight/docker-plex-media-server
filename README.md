@@ -76,7 +76,7 @@ Example of [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/)
 Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container] | [Plex Pass]
 ---------------------------- | -------------------- | ---------- | ------------ | ---------------- | -----------
 [wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**          | **Supported**
-[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | Supported<sup>[1](#footnote1)</sup>
+[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | **Supported**
 [timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No               | Supported<sup>[1](#footnote1)</sup>
 [needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No               | Supported<sup>[1](#footnote1)</sup>
 [binhex/arch-plex]           | ![][img-binhex]      | root       | Unsafe       | No               | No
@@ -166,4 +166,3 @@ Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-
 [img-timhaak]: https://badge.imagelayers.io/timhaak/plex:latest.svg
 [img-needo]: https://badge.imagelayers.io/needo/plex:latest.svg
 [img-binhex]: https://badge.imagelayers.io/binhex/arch-plex:latest.svg
-
