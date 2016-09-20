@@ -39,8 +39,7 @@ ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
 COPY *.sh Preferences.xml /
 COPY retrieve-plex-token /usr/local/bin/
 
-VOLUME /config
-VOLUME /media
+VOLUME ["/config", "/media"]
 
 EXPOSE 32400
 
@@ -48,4 +47,4 @@ USER plex
 
 WORKDIR /usr/lib/plexmediaserver
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ./Plex\ Media\ Server
+CMD ["/usr/lib/plexmediaserver/Plex Media Server"]
