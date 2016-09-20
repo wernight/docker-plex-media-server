@@ -1,18 +1,18 @@
 FROM debian:jessie
 
-# 1. Create plex user
-# 2. Download and install Plex (non plexpass)
-# 3. Create writable config directory in case the volume isn't mounted
 # This gets the latest non-plexpass version
 # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
 # We won't use upstart anyway.
 RUN set -x \
+    # Create plex user
  && useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
+    # Download and install Plex (non plexpass) after displaying downloaded URL in the log.
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
         xmlstarlet \
+ && curl -I 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' \
  && curl -L 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' -o plexmediaserver.deb \
  && touch /bin/start \
  && chmod +x /bin/start \
@@ -21,6 +21,7 @@ RUN set -x \
  && rm -f /bin/start \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
+    # Create writable config directory in case the volume isn't mounted
  && mkdir /config \
  && chown plex:plex /config
 
