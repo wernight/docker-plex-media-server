@@ -1,13 +1,8 @@
-# Supported tags and respective `Dockerfile` links
-
   * [`latest`](https://github.com/wernight/docker-plex-media-server/blob/master/Dockerfile) latest public (as described here) [![](https://images.microbadger.com/badges/image/wernight/plex-media-server.svg)](http://microbadger.com/images/wernight/plex-media-server "Get your own image badge on microbadger.com")
   * [`autoupdate`](https://github.com/wernight/docker-plex-media-server/blob/autoupdate/Dockerfile) installs latest on start (see below for differences) [![](https://images.microbadger.com/badges/image/wernight/plex-media-server:autoupdate.svg)](http://microbadger.com/images/wernight/plex-media-server "Get your own image badge on microbadger.com")
   * [`0`, `0.9`, `0.9.15`, `0.9.15.6`](https://github.com/wernight/docker-plex-media-server/tree/v0.9.15.6) (or similar) are like `latest` but for a specific version (deprecated: Plex doesn't provide updated versionned URLs anymore)
 
-
-## What is Plex Media Server
-
-[Plex Media Server](https://plex.tv/) organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...). It also offers a nice interface with posters and more.
+Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
 
 
 ### Usage
@@ -65,7 +60,7 @@ Example of [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/)
       #network_mode: host
       #restart: always
 
-### Features of this image
+### Features
 
   * **Small**: Built using official Docker [Debian](https://registry.hub.docker.com/_/debian/) and official [Plex download](https://plex.tv/downloads) (takes 85 MB instead of 180 MB for Ubuntu).
   * **Simple**: One command and you should be ready to go. All documented here.
@@ -87,12 +82,6 @@ Image                        | Size                 | [Runs As]  | [PID 1 Reap] 
 <a name="footnote1">1</a>: Supported by downloading via third party and not from the official Plex website.
 
 Based on current state as of January 2016 (if you find any mistake please open a ticket on GitHub).
-
-[img-wernight]: https://images.microbadger.com/badges/image/wernight/plex-media-server:autoupdate.svg
-[img-linuxserver]: https://images.microbadger.com/badges/image/linuxserver/plex.svg
-[img-timhaak]: https://images.microbadger.com/badges/image/timhaak/plex.svg
-[img-needo]: https://images.microbadger.com/badges/image/needo/plex.svg
-[img-binhex]: https://images.microbadger.com/badges/image/binhex/arch-plex.svg
 
 [Runs As]: https://opensource.com/business/14/7/docker-security-selinux
 [PID 1 Reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
@@ -169,3 +158,9 @@ But don't take my word for it, it's really easy for you to check.
 ### Feedbacks
 
 Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).
+
+[img-wernight]: https://badge.imagelayers.io/wernight/plex-media-server:latest.svg
+[img-linuxserver]: https://badge.imagelayers.io/linuxserver/plex:latest.svg
+[img-timhaak]: https://badge.imagelayers.io/timhaak/plex:latest.svg
+[img-needo]: https://badge.imagelayers.io/needo/plex:latest.svg
+[img-binhex]: https://badge.imagelayers.io/binhex/arch-plex:latest.svg
