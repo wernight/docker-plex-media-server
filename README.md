@@ -2,7 +2,7 @@
 
   * [`latest`](https://github.com/wernight/docker-plex-media-server/blob/master/Dockerfile) latest public (as described here) [![](https://images.microbadger.com/badges/image/wernight/plex-media-server.svg)](http://microbadger.com/images/wernight/plex-media-server "Get your own image badge on microbadger.com")
   * [`autoupdate`](https://github.com/wernight/docker-plex-media-server/blob/autoupdate/Dockerfile) installs latest on start (see below for differences) [![](https://images.microbadger.com/badges/image/wernight/plex-media-server:autoupdate.svg)](http://microbadger.com/images/wernight/plex-media-server "Get your own image badge on microbadger.com")
-  * [`0`, `0.9`, `0.9.15`, `0.9.15.6`](https://github.com/wernight/docker-plex-media-server/tree/v0.9.15.6) (or similar) are like `latest` but for a specific version
+  * [`0`, `0.9`, `0.9.15`, `0.9.15.6`](https://github.com/wernight/docker-plex-media-server/tree/v0.9.15.6) (or similar) are like `latest` but for a specific version (deprecated: Plex doesn't provide updated versionned URLs anymore)
 
 
 ## What is Plex Media Server
