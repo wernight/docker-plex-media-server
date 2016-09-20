@@ -44,8 +44,7 @@ ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
     LD_LIBRARY_PATH=/usr/lib/plexmediaserver \
     TMPDIR=/tmp
 
-COPY *.sh Preferences.xml /
-COPY retrieve-plex-token /usr/local/bin/
+COPY root /
 
 VOLUME ["/config", "/media"]
 
