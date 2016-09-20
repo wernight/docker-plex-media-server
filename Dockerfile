@@ -53,5 +53,5 @@ EXPOSE 32400
 USER plex
 
 WORKDIR /usr/lib/plexmediaserver
-ENTRYPOINT ["/usr/local/bin/dumb-init", "/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/dumb-init", "/plex-entrypoint.sh"]
 CMD ["/usr/lib/plexmediaserver/Plex Media Server"]

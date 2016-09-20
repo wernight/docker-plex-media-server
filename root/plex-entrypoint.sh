@@ -71,8 +71,10 @@ unset PLEX_EXTERNAL_PORT
 unset X_PLEX_TOKEN
 
 # Output logs to stdout.
-mkdir -p '/config/Plex Media Server/Logs'
-touch '/config/Plex Media Server/Logs/Plex Media Server.log'
+if [ ! -f '/config/Plex Media Server/Logs/Plex Media Server.log' ]; then
+    mkdir -p '/config/Plex Media Server/Logs'
+    touch '/config/Plex Media Server/Logs/Plex Media Server.log'
+fi
 (sleep 2 && tail -f '/config/Plex Media Server/Logs/Plex Media Server.log') &
 
 # Set the stack size
