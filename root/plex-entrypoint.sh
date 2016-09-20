@@ -75,7 +75,7 @@ if [ ! -f '/config/Plex Media Server/Logs/Plex Media Server.log' ]; then
     mkdir -p '/config/Plex Media Server/Logs'
     touch '/config/Plex Media Server/Logs/Plex Media Server.log'
 fi
-(sleep 2 && tail -f '/config/Plex Media Server/Logs/Plex Media Server.log') &
+tail -Fn 0 '/config/Plex Media Server/Logs/Plex Media Server.log' &
 
 # Set the stack size
 ulimit -s $PLEX_MAX_STACK_SIZE
