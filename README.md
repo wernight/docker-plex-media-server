@@ -7,10 +7,12 @@ Supported tags and respective `Dockerfile` links
   * [`0`, `0.9`, `0.9.15`, `0.9.15.6`](https://github.com/wernight/docker-plex-media-server/blob/v0.9.15.6/Dockerfile)
 
 
-What is Plex Media Server
-=========================
+What is Plex Media Server?
+==========================
 
 [Plex Media Server](https://plex.tv/) organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
+
+![Plex Logo](https://github.com/wernight/docker-plex-media-server/blob/master/docs/plex-logo.png?raw=true)
 
 
 How to use this image
@@ -115,7 +117,7 @@ To upgrade to the latest public version do again a `docker pull wernight/plex-me
 
 ### `wernight/plex-media-server:autoupdate`
 
-This is for users who want the really latest. It installs the latest public or **Plex Pass** release each time the container starts. It has a few differences compared to what is described here:
+This is for users who want the really latest. It installs the latest public or **Plex Pass** ![](https://github.com/wernight/docker-plex-media-server/blob/master/docs/pp-icon-orange.png?raw=true) release each time the container starts. It has a few differences compared to what is described here:
 
   * Runs as `root` initially so it can install Plex (required), after that it runs as `plex` user.
   * Supports PlexPass: Premium users get to download newer versions shortly before they get public. For that either specify `PLEX_LOGIN` and `PLEX_PASSWORD` or preferably `X_PLEX_TOKEN`:
