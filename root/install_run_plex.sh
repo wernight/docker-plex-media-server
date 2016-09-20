@@ -28,3 +28,6 @@ fi
 # so it's safer if we also unset them).
 unset X_PLEX_TOKEN
 unset PLEX_FORCE_DOWNLOAD_URL
+
+echo 'Starting Plex Media Server...'
+exec runuser -u plex ./Plex\ Media\ Server

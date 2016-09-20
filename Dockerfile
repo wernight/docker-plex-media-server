@@ -1,22 +1,29 @@
 FROM debian:jessie
 
+# Install basic required packages.
 RUN set -x \
-    # Create plex user
- && useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
-    # Install required tools to install and set up Plex
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
         xmlstarlet \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN set -x \
+    # Create plex user
+ && useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
     # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
     # We won't use upstart anyway.
  && touch /bin/start \
  && chmod +x /bin/start \
  && touch /bin/stop \
  && chmod +x /bin/stop \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* \
+    # Install dumb-init
+    # https://github.com/Yelp/dumb-init
+ && DUMP_INIT_URI=$(curl -L https://github.com/Yelp/dumb-init/releases/latest | grep -Po '(?<=href=")[^"]+_amd64(?=")') \
+ && curl -Lo /usr/local/bin/dumb-init "https://github.com/$DUMP_INIT_URI" \
+ && chmod +x /usr/local/bin/dumb-init \
     # Create writable config directory in case the volume isn't mounted
  && mkdir /config \
  && chown plex:plex /config
@@ -34,14 +41,12 @@ ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
     PLEXPASS_LOGIN='' \
     PLEXPASS_PASSWORD=''
 
-COPY *.sh Preferences.xml /
-COPY retrieve-plex-token /usr/local/bin/
+COPY root /
 
-VOLUME /config
-VOLUME /media
+VOLUME ["/config", "/media"]
 
 EXPOSE 32400
 
 WORKDIR /usr/lib/plexmediaserver
-ENTRYPOINT ["/entrypoint.sh"]
-CMD /install_plex.sh && runuser -u plex ./Plex\ Media\ Server
+ENTRYPOINT ["/usr/local/bin/dumb-init", "/entrypoint.sh"]
+CMD ["/install_run_plex.sh"]
