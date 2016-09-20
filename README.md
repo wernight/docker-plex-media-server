@@ -99,11 +99,18 @@ Based on current state as of January 2016 (if you find any mistake please open a
 [PID 1 Reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
 [Slim Container]: https://blog.phusion.nl/2015/01/20/baseimage-docker-fat-containers-treating-containers-vms/
 [Plex Pass]: https://support.plex.tv/hc/en-us/articles/201844613-Early-Access-Preview-Releases
+
 [wernight/plex-media-server]: https://registry.hub.docker.com/u/wernight/plex-media-server/
 [linuxserver/plex]:           https://registry.hub.docker.com/u/linuxserver/plex/
 [timhaak/plex]:               https://registry.hub.docker.com/u/timhaak/plex/
 [needo/plex]:                 https://registry.hub.docker.com/u/needo/plex/
 [binhex/arch-plex]:           https://registry.hub.docker.com/u/binhex/arch-plex/
+
+[img-wernight]:    https://images.microbadger.com/badges/image/wernight/plex-media-server.svg
+[img-linuxserver]: https://images.microbadger.com/badges/image/linuxserver/plex.svg
+[img-timhaak]:     https://images.microbadger.com/badges/image/timhaak/plex.svg
+[img-needo]:       https://images.microbadger.com/badges/image/needo/plex.svg
+[img-binhex]:      https://images.microbadger.com/badges/image/binhex/arch-plex.svg
 
 
 Image Variants
@@ -180,9 +187,3 @@ User Feedback
 =============
 
 Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).
-
-[img-wernight]: https://badge.imagelayers.io/wernight/plex-media-server:latest.svg
-[img-linuxserver]: https://badge.imagelayers.io/linuxserver/plex:latest.svg
-[img-timhaak]: https://badge.imagelayers.io/timhaak/plex:latest.svg
-[img-needo]: https://badge.imagelayers.io/needo/plex:latest.svg
-[img-binhex]: https://badge.imagelayers.io/binhex/arch-plex:latest.svg
