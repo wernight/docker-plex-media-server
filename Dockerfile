@@ -48,5 +48,5 @@ VOLUME ["/config", "/media"]
 EXPOSE 32400
 
 WORKDIR /usr/lib/plexmediaserver
-ENTRYPOINT ["/usr/local/bin/dumb-init", "/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/dumb-init", "/plex-autoupdate-entrypoint.sh"]
 CMD ["/install_run_plex.sh"]
