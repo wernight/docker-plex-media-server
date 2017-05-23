@@ -12,7 +12,7 @@ RUN set -x \
 
 RUN set -x \
     # Create plex user
- && useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
+ && useradd --system --uid 797 --create-home --shell /usr/sbin/nologin plex \
     # Download and install Plex (non plexpass) after displaying downloaded URL in the log.
     # This gets the latest non-plexpass version
     # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
