@@ -11,6 +11,11 @@ RUN set -x \
  && rm -rf /var/lib/apt/lists/*
 
 RUN set -x \
+    # Upgrade to get possible critical fixes.
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y --no-install-recommends \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
     # Create plex user
  && useradd --system --uid 797 --create-home --shell /usr/sbin/nologin plex \
     # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
