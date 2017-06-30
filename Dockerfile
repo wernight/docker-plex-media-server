@@ -46,6 +46,10 @@ ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
     PLEXPASS_LOGIN='' \
     PLEXPASS_PASSWORD=''
 
+# Temporary workound
+# https://github.com/wernight/docker-plex-media-server/issues/38
+RUN ln -sf $(which true) /sbin/udevadm
+
 COPY root /
 
 VOLUME ["/config", "/media"]
