@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch-slim
 
 # Install basic required packages.
 RUN set -x \
@@ -6,6 +6,7 @@ RUN set -x \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        dumb-init \
         xmlstarlet \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
@@ -24,11 +25,6 @@ RUN set -x \
  && chmod +x /bin/start \
  && touch /bin/stop \
  && chmod +x /bin/stop \
-    # Install dumb-init
-    # https://github.com/Yelp/dumb-init
- && DUMP_INIT_URI=$(curl -L https://github.com/Yelp/dumb-init/releases/latest | grep -Po '(?<=href=")[^"]+_amd64(?=")') \
- && curl -Lo /usr/local/bin/dumb-init "https://github.com/$DUMP_INIT_URI" \
- && chmod +x /usr/local/bin/dumb-init \
     # Create writable config directory in case the volume isn't mounted
  && mkdir /config \
  && chown plex:plex /config
@@ -57,5 +53,5 @@ VOLUME ["/config", "/media"]
 EXPOSE 32400
 
 WORKDIR /usr/lib/plexmediaserver
-ENTRYPOINT ["/usr/local/bin/dumb-init", "/plex-autoupdate-entrypoint.sh"]
+ENTRYPOINT ["dumb-init", "/plex-autoupdate-entrypoint.sh"]
 CMD ["/install_run_plex.sh"]
