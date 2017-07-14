@@ -5,7 +5,7 @@ RUN set -x \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
-        curl \
+        wget \
         dumb-init \
         xmlstarlet \
  && apt-get clean \

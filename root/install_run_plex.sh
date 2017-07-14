@@ -17,7 +17,7 @@ else
 
     # Download and install Plex Media Server
     echo 'Downloading Plex Media Server...'
-    curl -L $PLEX_FORCE_DOWNLOAD_URL -o plexmediaserver.deb
+    wget -O plexmediaserver.deb $PLEX_FORCE_DOWNLOAD_URL
 
     echo 'Installing Plex Media Server...'
     dpkg -i plexmediaserver.deb
