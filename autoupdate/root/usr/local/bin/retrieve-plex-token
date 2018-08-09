@@ -1,0 +1,41 @@
+#!/bin/sh -e
+
+if [ -z "$PLEX_LOGIN" ] || [ -z "$PLEX_PASSWORD" ]; then
+    PLEX_LOGIN=$1
+    PLEX_PASSWORD=$2
+fi
+
+while [ -z "$PLEX_LOGIN" ]; do
+    >&2 echo -n 'Your Plex login (e-mail or username): '
+    read PLEX_LOGIN
+done
+
+while [ -z "$PLEX_PASSWORD" ]; do
+    >&2 echo -n 'Your Plex password: '
+    read PLEX_PASSWORD
+done
+
+>&2 echo 'Retrieving a X-Plex-Token using Plex login/password...'
+
+wget -qO /tmp/plex_sign_in --http-user="${PLEX_LOGIN}" --http-password="${PLEX_PASSWORD}" 'https://plex.tv/users/sign_in.xml' \
+    --post-data='' \
+    --header='X-Plex-Device-Name: PlexMediaServer' \
+    --header='X-Plex-Provides: server' \
+    --header='X-Plex-Version: 0.9' \
+    --header='X-Plex-Platform-Version: 0.9' \
+    --header='X-Plex-Platform: xcid' \
+    --header='X-Plex-Product: Plex Media Server'\
+    --header='X-Plex-Device: Linux'\
+    --header='X-Plex-Client-Identifier: XXXX'
+X_PLEX_TOKEN=$(sed -n 's/.*<authentication-token>\(.*\)<\/authentication-token>.*/\1/p' /tmp/plex_sign_in)
+if [ -z "$X_PLEX_TOKEN" ]; then
+    cat /tmp/plex_sign_in
+    rm -f /tmp/plex_sign_in
+    >&2 echo 'Failed to retrieve the X-Plex-Token.'
+    exit 1
+fi
+rm -f /tmp/plex_sign_in
+
+>&2 echo "Your X_PLEX_TOKEN:"
+
+echo $X_PLEX_TOKEN
