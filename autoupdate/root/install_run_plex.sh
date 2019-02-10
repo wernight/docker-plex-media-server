@@ -29,5 +29,12 @@ fi
 unset X_PLEX_TOKEN
 unset PLEX_FORCE_DOWNLOAD_URL
 
+# Find correct library path.
+if [ -d /usr/lib/plexmediaserver/lib ]; then
+    export LD_LIBRARY_PATH=/usr/lib/plexmediaserver/lib
+else
+    export LD_LIBRARY_PATH=/usr/lib/plexmediaserver
+fi
+
 echo 'Starting Plex Media Server...'
 exec runuser -u plex ./Plex\ Media\ Server

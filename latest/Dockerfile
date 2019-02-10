@@ -35,7 +35,7 @@ RUN set -x \
  && chown plex:plex /config
 
 # PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS: The number of plugins that can run at the same time.
-# $PLEX_MEDIA_SERVER_MAX_STACK_SIZE: Used for "ulimit -s $PLEX_MEDIA_SERVER_MAX_STACK_SIZE".
+# PLEX_MEDIA_SERVER_MAX_STACK_SIZE: Used for "ulimit -s $PLEX_MEDIA_SERVER_MAX_STACK_SIZE".
 # PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR: defines the location of the configuration directory,
 #   default is "${HOME}/Library/Application Support".
 ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
