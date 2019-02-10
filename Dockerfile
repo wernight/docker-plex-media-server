@@ -17,8 +17,7 @@ RUN set -x \
     # This gets the latest non-plexpass version
     # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
     # We won't use upstart anyway.
- && curl -I 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' \
- && curl -L 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' -o plexmediaserver.deb \
+ && curl -L 'https://downloads.plex.tv/plex-media-server/1.14.1.5488-cc260c476/plexmediaserver_1.14.1.5488-cc260c476_amd64.deb' -o plexmediaserver.deb \
  && touch /bin/start \
  && chmod +x /bin/start \
  && dpkg -i plexmediaserver.deb \
