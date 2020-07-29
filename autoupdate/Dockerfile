@@ -1,6 +1,8 @@
 FROM debian:buster-slim
 
 # Install basic required packages.
+# NOTE: Plex installs its own "curl" so should avoid relying on it, see also:
+# https://github.com/wernight/docker-plex-media-server/issues/6
 RUN set -x \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -54,3 +56,6 @@ EXPOSE 32400
 WORKDIR /usr/lib/plexmediaserver
 ENTRYPOINT ["dumb-init", "/plex-autoupdate-entrypoint.sh"]
 CMD ["/install_run_plex.sh"]
+
+HEALTHCHECK --interval=5m --timeout=5s \
+  CMD wget --tries=1 http://localhost:32400/ || exit 1

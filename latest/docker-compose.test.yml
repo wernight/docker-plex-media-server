@@ -1,0 +1,3 @@
+sut:
+  build: .
+  command: sh -c '("/usr/lib/plexmediaserver/Plex Media Server" &) && sleep 10 && wget --tries=20 --waitretry=5 http://localhost:32400/'
