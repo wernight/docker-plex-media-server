@@ -58,4 +58,4 @@ ENTRYPOINT ["dumb-init", "/plex-autoupdate-entrypoint.sh"]
 CMD ["/install_run_plex.sh"]
 
 HEALTHCHECK --interval=5m --timeout=5s \
-  CMD wget --tries=1 http://localhost:32400/ || exit 1
+  CMD wget -O /dev/null --tries=1 http://localhost:32400/ || exit 1

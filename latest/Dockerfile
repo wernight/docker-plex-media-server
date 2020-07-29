@@ -55,4 +55,4 @@ ENTRYPOINT ["dumb-init", "/plex-entrypoint.sh"]
 CMD ["/usr/lib/plexmediaserver/Plex Media Server"]
 
 HEALTHCHECK --interval=5m --timeout=5s \
-  CMD wget --tries=1 http://localhost:32400/ || exit 1
+  CMD wget -O /dev/null --tries=1 http://localhost:32400/ || exit 1
