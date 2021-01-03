@@ -3,7 +3,7 @@ Supported tags and respective `Dockerfile` links
 
   * [`latest`](https://github.com/wernight/docker-plex-media-server/blob/master/latest/Dockerfile) latest public (as described here) [![](https://images.microbadger.com/badges/image/wernight/plex-media-server.svg)](http://microbadger.com/images/wernight/plex-media-server "Get your own image badge on microbadger.com")
   * [`autoupdate`](https://github.com/wernight/docker-plex-media-server/blob/master/autoupdate/Dockerfile) installs latest on start (see below for differences) [![](https://images.microbadger.com/badges/image/wernight/plex-media-server:autoupdate.svg)](http://microbadger.com/images/wernight/plex-media-server "Get your own image badge on microbadger.com")
-  * [`1`, `1.19`, `1.95.5`](https://github.com/wernight/docker-plex-media-server/blob/v1.19.5.3112/Dockerfile) (or similar) are like `latest` but for a specific version
+  * [`1`, `1.19`, `1.19.5`](https://github.com/wernight/docker-plex-media-server/blob/v1.19.5.3112/Dockerfile) (or similar) are like `latest` but for a specific version
   * [`1`, `1.14`, `1.14.1`](https://github.com/wernight/docker-plex-media-server/blob/v1.14.1.5488/Dockerfile) (or similar) are like `latest` but for a specific version
   * [`1.1`, `1.1.4`, `1.1.4.2757`](https://github.com/wernight/docker-plex-media-server/blob/v1.1.4.2757/Dockerfile)
   * [`0`, `0.9`, `0.9.15`, `0.9.15.6`](https://github.com/wernight/docker-plex-media-server/blob/v0.9.15.6/Dockerfile)
